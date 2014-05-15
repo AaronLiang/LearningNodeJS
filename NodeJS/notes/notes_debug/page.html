@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>notes_debug</title>
+</head><body># local debug<br/>
+$ node debug [debug.js]<br/>
+<br/>
+# remote debug<br/>
+$ node --debug[=port] [debug.js]<br/>
+$ node --debug-brk[=port] [debug.js]<br/>
+<br/>
+# in Eclipse<br/>
+update link: &nbsp;http://chromedevtools.googlecode.com/svn/update/dev/<br/>
+<br/>
+# node-inspector<br/>
+$ npm install -g node-inspcetor<br/>
+$ node --debug-brk=5858 debug.js<br/>
+$ node-inspector<br/>
+# open Chrome, Chromium or Safari, go to http://127.0.0.1:8080/debug?port=5858<br/>
+# node-inspector can not be used in Firefox or Internet Explorer, since it uses WebKit Web Inspector</body></html>

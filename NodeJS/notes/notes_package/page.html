@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>notes_package</title>
+</head><body>Node.js 在调用某个package（包）时，会先检查包中的package.json文件的main字段，将其作为包的接口模块，如果package.json或者main字段不存在，会尝试寻找index.js或者index.node作为包的接口。<br/>
+<br/>
+模 式&#09;&#09;可通过 require 使用&#09;&#09;注册PATH<br/>
+本地模式&#09;&#09;&#09;是&#09;&#09;&#09;&#09;&#09;否<br/>
+全局模式&#09;&#09;&#09;否&#09;&#09;&#09;&#09;&#09;是<br/>
+<br/>
+# 全局-&gt;局部链接 ! not for windows !<br/>
+# if npm install -g express<br/>
+$ cd [project_folder]<br/>
+$ npm link express # to use global package express as local package<br/>
+<br/>
+# 局部-&gt;全局! not for windows !<br/>
+# cd [package_folder]<br/>
+$ npm link<br/>
+<br/>
+# publish package<br/>
+$ cd [package_folder]<br/>
+$ npm init<br/>
+$ npm publish<br/>
+$ npm unpublish<br/>
+</body></html>

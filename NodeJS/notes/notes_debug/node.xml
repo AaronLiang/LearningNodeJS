@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node>
+<version>6</version>
+<dict>
+  <key>title</key><string>notes_debug</string>
+  <key>nodeid</key><string>311a7ef2-6db0-46be-9651-fe51c4735dc4</string>
+  <key>modified_time</key><integer>1400183474</integer>
+  <key>version</key><integer>6</integer>
+  <key>content_type</key><string>text/xhtml+xml</string>
+  <key>created_time</key><integer>1400177420</integer>
+  <key>order</key><integer>2</integer>
+</dict>
+</node>
