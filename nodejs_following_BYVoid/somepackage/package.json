@@ -1,0 +1,11 @@
+{
+  "main": "./lib/interface.js",
+  "name": "somepackage",
+  "version": "0.0.1",
+  "description": "A module for learning NodeJS",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "RockyNiu",
+  "license": "ISC"
+}
