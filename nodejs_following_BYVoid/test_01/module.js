@@ -8,4 +8,4 @@ exports.setName = function(thyName){
 
 exports.sayHello = function(){
 	console.log('Hello ' + name);
-}
+};

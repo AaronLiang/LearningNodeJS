@@ -10,7 +10,7 @@ function Hello(){
 	this.sayHello = function(){
 		console.log('Hello ' + name);
 	};
-};
+}
 
 exports.Hello = Hello;
 module.exports = Hello;

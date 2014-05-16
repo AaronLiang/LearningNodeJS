@@ -8,6 +8,6 @@ hello.sayHello(); */
 
 var Hello = require('./singleobject');
 
-hello = new Hello();
+var hello = new Hello();
 hello.setName('Rocky');
-hello.sayHello(); 
+hello.sayHello();
