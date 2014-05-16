@@ -1,0 +1,2 @@
+in Eclise
+Windows -> Preferences -> Javascript -> Editor -> Typing -> Tabulators -> click 'formatter preference page' -> Edit indentataion size
