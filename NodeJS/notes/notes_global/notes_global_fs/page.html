@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>notes_global_fs</title>
+</head><body># fs<br/>
+# 所有的操作都有同步和异步的两个版本<br/>
+<br/>
+# fs.readFile(filename, [encoding], [callback(err,data)])<br/>
+# fs.readFile()中如果没有指定encoding, data是一个解析后的字符串，否则data将是以Buffer形式表示的二进制数据。<br/>
+<br/>
+# 如无必要，不用fs.open+fs.read方式读取文件，因为这样要求手动管理缓冲区和文件指针，尤其是在不知道文件大小的情况下非常麻烦。<br/>
+<br/>
+# fs.open(path, flags, [mode], [callback(err,fd)])<br/>
+<br/>
+# fs.read(fd, buffer, offset, length, position, [callback(err, bytesRead, buffer)])</body></html>

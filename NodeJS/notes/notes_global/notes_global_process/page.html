@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>notes_global_process</title>
+</head><body># process.argv<br/>
+process.argv是命令行参数数组，第一个元素是 node，第二个元素是js文件路径，从第三个元素开始每个元素是一个运行参数。<br/>
+<br/>
+# process.stdout<br/>
+process.stdout是标准输出流，通常我们使用的 console.log() 向标准输出打印字符，而process.stdout.write() 函数提供了更底层的接口。<br/>
+<br/>
+# proecss.stdin<br/>
+process.stdin是标准输入流，初始时它是被暂停的，要想从标准输入读取数据，你必须恢复流，并手动编写流的事件响应函数。<br/>
+<br/>
+process.stdin.resume();<br/>
+process.stdin.on('data', function(data) {<ul><li style="list-style-type: none">process.stdout.write('read from console: ' + data.toString());</li>
+</ul>
+});<br/>
+<br/>
+# process.nextTick(callback) page60<br/>
+process.nextTick(callback)的功能是为事件循环设置一项任务，Node.js 会在下次事件循环调响应时调用callback。<br/>
+# 不要使用setTimeout(fn,0)代替process.nextTick(callback)，前者比后者效率要低得多。</body></html>

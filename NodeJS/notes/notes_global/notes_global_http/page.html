@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>New Page</title>
+</head><body># http<br/>
+<br/>
+# http.Server<br/>
+<br/>
+# http.ServerRequest<br/>
+# 用url.parse(req.url, true)来获取get内容，其中query是GET请求内容，pathname是路径。<br/>
+<br/>
+<br/>
+# http.ServerResponse<br/>
+# 三个envents：data, end, close<br/>
+<br/>
+# http.ServerResponse.response.writeHead(statusCode, [headers])<br/>
+# 一个请求内最多被调用一次，如果不调用，则会自动生成一个响应头。<br/>
+<br/>
+# http.ServerResponse.response.write(data,[encoding])<br/>
+# 在response.end调用之前，可以被多次调用<br/>
+<br/>
+# http.ServerResponse.response.end([data],[endconding])<br/>
+# 必须被调用，否则客户端永远在等待<br/>
+<br/>
+# http.request(options, callback)<br/>
+# 必须要加上req.end()结束请求，否则客户端将一直等待。<br/>
+<br/>
+# http.get(options, callback)<br/>
+# 自动设定GET请求，不需要手动调用req.end()<br/>
+<br/>
+# http.ClientRequest<br/>
+# 由http.request或者http.get返回产生的对象<br/>
+<br/>
+# http.ClientResponse<br/>
+# 三个envents：data, end, close</body></html>
