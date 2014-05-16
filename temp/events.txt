@@ -1,0 +1,13 @@
+# events
+# most important module in Node.JS!
+# http://nodejs.org/api/events.html
+
+# events.EventEmitter
+# events.EventEmitter.on(event, listener);
+# events.EventEmitter.emit(event, [arg1], [arg2], ...);
+# events.EventEmitter.once(event, listerner);
+# events.EventEmitter.removeListener(event, listener);
+
+# error
+# set listener for 发射error事件的对象，避免遇到错误后整个程序崩溃。
+
