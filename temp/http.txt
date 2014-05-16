@@ -1,0 +1,31 @@
+# http
+
+# http.Server
+
+# http.ServerRequest
+# 用url.parse(req.url, true)来获取get内容，其中query是GET请求内容，pathname是路径。
+
+
+# http.ServerResponse
+# 三个envents：data, end, close
+
+# http.ServerResponse.response.writeHead(statusCode, [headers])
+# 一个请求内最多被调用一次，如果不调用，则会自动生成一个响应头。
+
+# http.ServerResponse.response.write(data,[encoding])
+# 在response.end调用之前，可以被多次调用
+
+# http.ServerResponse.response.end([data],[endconding])
+# 必须被调用，否则客户端永远在等待
+
+# http.request(options, callback)
+# 必须要加上req.end()结束请求，否则客户端将一直等待。
+
+# http.get(options, callback)
+# 自动设定GET请求，不需要手动调用req.end()
+
+# http.ClientRequest
+# 由http.request或者http.get返回产生的对象
+
+# http.ClientResponse
+# 三个envents：data, end, close

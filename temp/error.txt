@@ -1,0 +1,2 @@
+# error
+# Node.js的异步编程接口习惯以最后一个参数为callback（通常一个函数只有一个callback)。callback中，第一个参数是err，其余参数是其他返回的内容。如果没有错误，err的值将会是null或者undefined；如果有错误，err通常是Error对象的实例。
