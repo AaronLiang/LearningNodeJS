@@ -2,14 +2,14 @@
 <node>
 <version>6</version>
 <dict>
-  <key>title</key><string>install</string>
-  <key>nodeid</key><string>9d1c5d53-22c7-40e5-afe0-857911998abc</string>
-  <key>modified_time</key><integer>1400277073</integer>
+  <key>title</key><string>notes_global_console</string>
+  <key>nodeid</key><string>9aa7ad98-52f6-4256-844e-a215c092e149</string>
+  <key>modified_time</key><integer>1400276657</integer>
   <key>version</key><integer>6</integer>
   <key>content_type</key><string>text/xhtml+xml</string>
-  <key>created_time</key><integer>1400010385</integer>
+  <key>created_time</key><integer>1400276596</integer>
   <key>info_sort_dir</key><integer>1</integer>
-  <key>order</key><integer>0</integer>
+  <key>order</key><integer>1</integer>
   <key>info_sort</key><string>order</string>
 </dict>
 </node>
