@@ -11,4 +11,28 @@ $ npm install express-generator -g<br/>
 $ express -e microblog<br/>
 $ cd microblog<br/>
 $ npm install<br/>
-$ DEBUG=microblog ./bin/www # run</body></html>
+$ DEBUG=microblog ./bin/www # run<br/>
+<br/>
+# 动态设定路径#也支持正则表达式，不过要用req.params[0], req.params[1], ...方法调用<br/>
+#&#09;app.get('/user/:username', function(req, res) {<ul><li style="list-style-type: none"><ul><li style="list-style-type: none">res.send('user: ' + req.params.username);</li>
+</ul>
+</li>
+<li style="list-style-type: none">});</li>
+</ul>
+#&#09;http://localhost:3000/user/rocky<br/>
+#&#09;可以看到页面显示了以下内容：<ul><li style="list-style-type: none">user: rocky</li>
+<li style="list-style-type: none"></li>
+</ul>
+#&#09;转移控制权<ul><li style="list-style-type: none">app.all('/user/:username', function(req, res, next) {</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">console.log('all methods captured');</li>
+<li style="list-style-type: none">next();</li>
+</ul>
+</li>
+<li style="list-style-type: none">});</li>
+<li style="list-style-type: none">app.get('/user/:username', function(req, res) {</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">res.send('user: ' + req.params.username);</li>
+</ul>
+</li>
+<li style="list-style-type: none">});</li>
+</ul>
+</body></html>
