@@ -1,5 +1,0 @@
-# console
-
-# console.log()
-# console.error()
-# console.trace()
