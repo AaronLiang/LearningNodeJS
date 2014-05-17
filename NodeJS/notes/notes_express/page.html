@@ -13,17 +13,17 @@ $ cd microblog<br/>
 $ npm install<br/>
 $ DEBUG=microblog ./bin/www # run<br/>
 <br/>
-# 动态设定路径#也支持正则表达式，不过要用req.params[0], req.params[1], ...方法调用<br/>
+<span style="color: #0000ff"># 动态设定路径</span>#也支持正则表达式，不过要用req.params[0], req.params[1], ...方法调用<br/>
 #&#09;app.get('/user/:username', function(req, res) {<ul><li style="list-style-type: none"><ul><li style="list-style-type: none">res.send('user: ' + req.params.username);</li>
 </ul>
 </li>
 <li style="list-style-type: none">});</li>
 </ul>
-#&#09;http://localhost:3000/user/rocky<br/>
-#&#09;可以看到页面显示了以下内容：<ul><li style="list-style-type: none">user: rocky</li>
+# http://localhost:3000/user/rocky<br/>
+# 可以看到页面显示了以下内容：<ul><li style="list-style-type: none">user: rocky</li>
 <li style="list-style-type: none"></li>
 </ul>
-#&#09;转移控制权<ul><li style="list-style-type: none">app.all('/user/:username', function(req, res, next) {</li>
+<span style="color: #0000ff"># 转移控制权</span><ul><li style="list-style-type: none">app.all('/user/:username', function(req, res, next) {</li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none">console.log('all methods captured');</li>
 <li style="list-style-type: none">next();</li>
 </ul>
@@ -34,5 +34,49 @@ $ DEBUG=microblog ./bin/www # run<br/>
 </ul>
 </li>
 <li style="list-style-type: none">});</li>
+<li style="list-style-type: none"></li>
 </ul>
-</body></html>
+<b><span style="color: #0000ff"># 片段视图</span></b><br/>
+# in app.js # 'list' -&gt; list.ejs <br/>
+app.get('/list', function(req, res){<ul><li style="list-style-type: none">res.renderI('list',</li>
+<li style="list-style-type: none">items: [2014, 'Rocky', 'Learing', 'Node.js']</li>
+<li style="list-style-type: none">});</li>
+</ul>
+});<br/>
+# create list.ejs # include listitem -&gt; listitem.ejs<br/>
+&lt;ul&gt;<ul><li style="list-style-type: none">&lt;% items.forEach(function(listitem){ %&gt;</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">&lt;% include listitem %&gt;</li>
+</ul>
+</li>
+<li style="list-style-type: none">&lt;% }) %&gt;</li>
+</ul>
+&lt;/ul&gt;<br/>
+# create listitem.ejs <br/>
+# listitem inside get the value from items.forEach(function(listitem))<br/>
+# in listitem.ejs &lt;%= %&gt; or &lt;%- %&gt;<br/>
+&lt;li&gt;&lt;%= listitem %&gt;&lt;/li&gt; or &lt;li&gt;&lt;%- listitem %&gt;&lt;/li&gt;<br/>
+<br/>
+<span style="color: #0000ff"># 视图助手</span><br/>
+# in app.js<br/>
+...<br/>
+var util = require('util');<br/>
+...<br/>
+app.locals({<br/>
+&nbsp; &nbsp; &nbsp;inspect: function(obj){<br/>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return util.inspect(obj, true);<br/>
+&nbsp; &nbsp; &nbsp;}<br/>
+});<br/>
+app.use(function(req, res, next){<br/>
+&nbsp; &nbsp; &nbsp;res.locals.headers = req.headers;<br/>
+&nbsp; &nbsp; &nbsp;next();<br/>
+});<br/>
+... <br/>
+app.use(app.router); <span style="color: #ff0000">#! must after res.locals setting</span><br/>
+...<br/>
+app.get('/helper', function(req, res){<br/>
+&nbsp; &nbsp; &nbsp;res.render('helper',{<br/>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; title: 'Helpers'<br/>
+&nbsp; &nbsp; &nbsp;});<br/>
+});<br/>
+# in helpers.ejs <span style="color: #ff0000"># must use locals.</span>hearders<br/>
+&lt;%=inspect(locals.headers)%&gt; &nbsp; </body></html>
