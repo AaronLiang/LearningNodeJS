@@ -37,7 +37,7 @@ $ DEBUG=microblog ./bin/www # run<br/>
 <li style="list-style-type: none">});</li>
 <li style="list-style-type: none"></li>
 </ul>
-<b><span style="color: #0000ff"># 片段视图</span></b><br/>
+<span style="color: #0000ff"><b># 片段视图</b></span><br/>
 # in app.js # 'list' -&gt; list.ejs <br/>
 app.get('/list', function(req, res){<ul><li style="list-style-type: none">res.renderI('list',</li>
 <li style="list-style-type: none">items: [2014, 'Rocky', 'Learing', 'Node.js']</li>
@@ -62,22 +62,22 @@ app.get('/list', function(req, res){<ul><li style="list-style-type: none">res.re
 ...<br/>
 var util = require('util');<br/>
 ...<br/>
-app.locals({<br/>
+app.locals({ // staticHelper<br/>
 &nbsp; &nbsp; &nbsp;inspect: function(obj){<br/>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return util.inspect(obj, true);<br/>
 &nbsp; &nbsp; &nbsp;}<br/>
 });<br/>
 app.use(function(req, res, next){<br/>
-&nbsp; &nbsp; &nbsp;res.locals.headers = req.headers;<br/>
+&nbsp; &nbsp; &nbsp;res.locals.headers = req.headers; // dynamicHelper<br/>
 &nbsp; &nbsp; &nbsp;next();<br/>
 });<br/>
 ... <br/>
-app.use(app.router); <span style="color: #ff0000">#! must after res.locals setting</span><br/>
+app.use(app.router); //<span style="color: #ff0000">! must after res.locals setting</span><br/>
 ...<br/>
 app.get('/helper', function(req, res){<br/>
 &nbsp; &nbsp; &nbsp;res.render('helper',{<br/>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; title: 'Helpers'<br/>
 &nbsp; &nbsp; &nbsp;});<br/>
 });<br/>
-# in helpers.ejs <span style="color: #ff0000"># must use locals.</span>hearders<br/>
+# in helpers.ejs //<span style="color: #ff0000">&nbsp;must use locals.</span>hearders<br/>
 &lt;%=inspect(locals.headers)%&gt; &nbsp; </body></html>

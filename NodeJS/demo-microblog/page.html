@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Demo-microblog</title>
+</head><body>1) Design:<br/>
+根据功能设计，我们把路由按照以下方案规划。<br/>
+<ul><li style="list-style-type: none">Path&#09;&#09;Aim&#09;&#09;&#09;GET&#09;&#09;&#09;POST</li>
+<li style="list-style-type: none">/&#09;&#09;首页&#09;&#09;&#09;yes</li>
+<li style="list-style-type: none">/u/[user]&#09;用户的主页&#09;yes</li>
+<li style="list-style-type: none">/post&#09;发表信息&#09;&#09;&#09;&#09;&#09;yes</li>
+<li style="list-style-type: none">/reg&#09;&#09;用户注册&#09;&#09;yes&#09;&#09;&#09;yes</li>
+<li style="list-style-type: none">/login&#09;用户登录&#09;&#09;yes&#09;&#09;&#09;yes</li>
+<li style="list-style-type: none">/logout&#09;用户登出&#09;&#09;yes</li>
+<li style="list-style-type: none"></li>
+</ul>
+以上页面还可以根据用户状态细分。发表信息以及用户登出页面必须是已登录用户才能操作的功能，而用户注册和用户登入所面向的对象必须是未登入的用户。首页和用户主页则针对已登入和未登入的用户显示不同的内容。<br/>
+<br/>
+2) generate home page<br/>
+# insert jquery<br/>
+$ npm install jquery<br/>
+$ cp ./node_modules/jquery/dist/jquery.js ./public/javascripts/<br/>
+<br/>
+# insert bootstrap<br/>
+# download bootstrap, copy all three folders 'css', 'fonts', and 'js' (they may in the /dist folder) to ./public<br/>
+<br/>
+# change index.ejs, filling the content<br/>
+<br/>
+3) generate reg page<br/>
+<br/>
+# create reg.ejs, filling the content<br/>
+<br/>
+# install mongodb<br/>
+# in package.json add <br/>
+"connect-mongo" : "&gt;=0.4.1", <br/>
+"mongodb": "&gt;=1.4.4",<br/>
+"connect": "&gt;=2.16.2",<br/>
+"express-session": "&gt;=1.1.0"<br/>
+$ npm install<br/>
+<br/>
+# creat ./models/settings.js add the following <br/>
+module.exports = {<ul><li style="list-style-type: none">cookieSecret: 'rockyniu',</li>
+<li style="list-style-type: none">db: 'microblog',</li>
+<li style="list-style-type: none">host: 'localhost',</li>
+</ul>
+};<br/>
+# cookieSecret用于数据加密，db是数据库名，host是数据库地址<br/>
+<br/>
+# creat ./models/db.js add the following<br/>
+var settings = require('settings');<br/>
+var Db = require('mongodb').Db;<br/>
+var Connection = require('mongodb').Connection;<br/>
+var Server = require('mongodb').Server;<br/>
+<br/>
+module.exports = new Db(settings.db, new Server(settings,host,<ul><li style="list-style-type: none">Connection.DEFAULT_PORT, {}));</li>
+</ul>
+<br/>
+# in app.js, add<br/>
+var connect = require('connect');<br/>
+var session = require('express-session');<br/>
+var MongoStore = require('connect-mongo')(connect); // must after conncet and session<br/>
+var settings = require('./models/settings');<br/>
+<br/>
+app.use(session({<ul><li style="list-style-type: none">secret: settings.cookieSecret,</li>
+<li style="list-style-type: none">store: new MongoStore({</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">db: settings.db</li>
+</ul>
+</li>
+<li style="list-style-type: none">})</li>
+</ul>
+}));<br/>
+app.use(require('./routes/index'));<br/>
+# delete app.use(app.routes), var routes, and all router setting (such as app.get('/', routes.index);<br/>
+<br/>
+# in ./routes/index.js<br/>
+var express = require('express');<br/>
+var router = express.Router();<br/>
+// get home page//<br/>
+...<br/>
+// get reg page//<br/>
+router.get('reg', function(req, res){<ul><li style="list-style-type: none">res.render('reg', {</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">title: 'reg'</li>
+</ul>
+</li>
+<li style="list-style-type: none">});</li>
+</ul>
+});<br/>
+<br/>
+module.exportes = router;<br/>
+<br/>
+// view dynamicHelper<br/>
+<br/>
+// req.flash()</body></html>
