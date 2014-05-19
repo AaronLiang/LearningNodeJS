@@ -35,34 +35,9 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 
-app.use(function(req,res, next){
-	res.locals.user = req.session.user;
-	
-	var err = req.flash('error');
-	if (err.length)
-		res.locals.error = err;
-	else
-		res.locals.err = null;
-	
-	var succ = req.flash('success');
-	if (succ.length)
-		res.locals.success = succ;
-	else
-		res.locals.success = null;
-	
-	res.locals.session = req.session;
-	next();
-});
-
-//app.get('/', routes.index);
-//app.get('/u/:user', routes.user);
-//app.post('/post', routes.post);
-//app.get('/reg', routes.reg);
-//app.post('/reg', routes.doReg);
-//app.get('/login', routes.login);
-//app.post('/login', routes.doLogin);
-//app.get('/logout', routes.logout);
-app.use(require('./routes/index'));
+app.use(require('./routes'));
+//app.use('/', require('./routes/index'));
+//app.use('/reg', require('./routes/index'));
 
 // / catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -95,4 +70,5 @@ app.use(function(err, req, res, next) {
 	});
 });
 
+app.listen(3000);
 module.exports = app;

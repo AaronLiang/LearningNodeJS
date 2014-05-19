@@ -29,6 +29,9 @@ User.prototype.save = function save(callback) {
 			// 为 name 属性添加索引
 			collection.ensureIndex('name', {
 				unique : true
+			}, function(err, user) {
+				mongodb.close();
+				callback(err, user);
 			});
 			// 写入 user 文档
 			collection.insert(user, {
