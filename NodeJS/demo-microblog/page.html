@@ -52,7 +52,7 @@ var Db = require('mongodb').Db;<br/>
 var Connection = require('mongodb').Connection;<br/>
 var Server = require('mongodb').Server;<br/>
 <br/>
-module.exports = new Db(settings.db, new Server(settings,host,<ul><li style="list-style-type: none">Connection.DEFAULT_PORT, {}));</li>
+module.exports = new Db(settings.db, new Server(settings,host,<ul><li style="list-style-type: none">Connection.DEFAULT_PORT, {}),{safe: true});</li>
 </ul>
 <br/>
 # in app.js, add<br/>
