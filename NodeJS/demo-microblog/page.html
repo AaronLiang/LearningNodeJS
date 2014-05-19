@@ -30,7 +30,7 @@ $ cp ./node_modules/jquery/dist/jquery.js ./public/javascripts/<br/>
 <br/>
 # create reg.ejs, filling the content<br/>
 <br/>
-# install mongodb<br/>
+# install mongodb (# something about using mongodb in windows <a href="http://www.cnblogs.com/phpliu/p/3443853.html">http://www.cnblogs.com/phpliu/p/3443853.html</a>)<br/>
 # in package.json add <br/>
 "connect-mongo" : "&gt;=0.4.1", <br/>
 "mongodb": "&gt;=1.4.4",<br/>
@@ -38,7 +38,7 @@ $ cp ./node_modules/jquery/dist/jquery.js ./public/javascripts/<br/>
 "express-session": "&gt;=1.1.0"<br/>
 $ npm install<br/>
 <br/>
-# creat ./models/settings.js add the following <br/>
+# create ./models/settings.js add the following <br/>
 module.exports = {<ul><li style="list-style-type: none">cookieSecret: 'rockyniu',</li>
 <li style="list-style-type: none">db: 'microblog',</li>
 <li style="list-style-type: none">host: 'localhost',</li>
@@ -46,20 +46,21 @@ module.exports = {<ul><li style="list-style-type: none">cookieSecret: 'rockyniu'
 };<br/>
 # cookieSecret用于数据加密，db是数据库名，host是数据库地址<br/>
 <br/>
-# creat ./models/db.js add the following<br/>
+# create ./models/db.js add the following<br/>
 var settings = require('settings');<br/>
 var Db = require('mongodb').Db;<br/>
 var Connection = require('mongodb').Connection;<br/>
 var Server = require('mongodb').Server;<br/>
 <br/>
-module.exports = new Db(settings.db, new Server(settings,host,<ul><li style="list-style-type: none">Connection.DEFAULT_PORT, {}));</li>
+module.exports = new Db(settings.db, new Server(settings,host,<ul><li style="list-style-type: none">Connection.DEFAULT_PORT, {}),{safe: true});</li>
 </ul>
 <br/>
-# in app.js, add<br/>
+# in app.js, add modules<br/>
 var connect = require('connect');<br/>
 var session = require('express-session');<br/>
 var MongoStore = require('connect-mongo')(connect); // must after conncet and session<br/>
 var settings = require('./models/settings');<br/>
+var flash = require('connect-flash'); // for using flash() in Express4 通过flash保存的变量只会在用户当前和下一次的请求中被访问，之后会被清除<br/>
 <br/>
 app.use(session({<ul><li style="list-style-type: none">secret: settings.cookieSecret,</li>
 <li style="list-style-type: none">store: new MongoStore({</li>
@@ -78,16 +79,26 @@ var router = express.Router();<br/>
 // get home page//<br/>
 ...<br/>
 // get reg page//<br/>
-router.get('reg', function(req, res){<ul><li style="list-style-type: none">res.render('reg', {</li>
+router.get('/reg', function(req, res){<ul><li style="list-style-type: none">res.render('reg', {</li>
 <li style="list-style-type: none"><ul><li style="list-style-type: none">title: 'reg'</li>
 </ul>
 </li>
 <li style="list-style-type: none">});</li>
 </ul>
 });<br/>
-<br/>
+...<br/>
+// post reg page //<br/>
+var crypto = require('crypto'); // crypto是Node.js 的一个核心模块，功能是加密并生成各种散列<br/>
+var User = require('../models/user.js'); // 自己设计的用户对象 // create ./models/user.js, filling the content<br/>
+router.post('/reg', function(req, res){<ul><li style="list-style-type: none">// filling the content</li>
+</ul>
+});<br/>
+...<br/>
 module.exportes = router;<br/>
 <br/>
-// view dynamicHelper<br/>
+# insert flash()<br/>
+# in app.js<br/>
+app.use(flash());<br/>
 <br/>
-// req.flash()</body></html>
+<br/>
+// view dynamicHelper</body></html>
