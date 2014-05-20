@@ -1,11 +1,13 @@
 var express = require('express');
-var reg = express.Router();
+var router = express.Router();
+var checkStatus = require('./check_status');
 
 /* GET registration page. */
 var crypto = require('crypto');
 var User = require('../models/user.js');
 
-reg.get('/', function(req, res) {
+router.get('/', checkStatus.checkNotLogin);
+router.get('/', function(req, res) {
 	res.render('reg', {
 		title : '用户注册'
 //		user : req.session.user,
@@ -15,7 +17,8 @@ reg.get('/', function(req, res) {
 });
 
 /* POST registration page. */
-reg.post('/', function(req, res) {
+router.post('/', checkStatus.checkNotLogin);
+router.post('/', function(req, res) {
 	// 检测用户两次输入的口令是否一致
 	if (req.body['password-repeat'] != req.body['password']) {
 		req.flash('error', '两次输入的口令不一致');
@@ -46,10 +49,11 @@ reg.post('/', function(req, res) {
 			}
 			req.session.user = newUser;
 			req.flash('success', '祝贺您注册成功！');
+			req.flash('error', null);
+			req.session.save(); // very important!!
 			return res.redirect('/');
 		});
 	});
 });
 
-console.log('reg.js');
-module.exports = reg;
+module.exports = router;

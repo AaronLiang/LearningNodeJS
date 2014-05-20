@@ -11,8 +11,8 @@ var settings = require('./models/settings');
 
 var routes = require('./routes/index');
 var reg = require('./routes/reg');
-// var login = require('./routes/login');
-// var logout = require('./routes/logout');
+var login = require('./routes/login');
+var logout = require('./routes/logout');
 
 var app = express();
 
@@ -24,21 +24,19 @@ app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser());
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(flash()); // used before session
 app.use(session({
 	secret : settings.cookieSecret,
 	key : settings.db, // cookie name
-//	cookie : {
-//		maxAge : 1000 * 60 * 60 * 24 * 30,
-//		secure: flase
-//	}, // 30 days
+	cookie : {
+		maxAge : 1000 * 60 * 60 * 24 * 30,
+	}, // 30 days
 	store : new MongoStore({
 		db : settings.db
 	})
 }));
-app.use(flash());
-// app.use(app.router(routes));
-app.use(express.static(path.join(__dirname, 'public')));
-
 
 //dynamicHelper
 app.use(function(req, res, next) {
@@ -61,8 +59,8 @@ app.use(function(req, res, next) {
 
 app.use('/', routes);
 app.use('/reg', reg);
-// app.use('/login', login);
-// app.use('/logout', logout);
+app.use('/login', login);
+app.use('/logout', logout);
 
 // / catch 404 and forward to error handler
 app.use(function(req, res, next) {
