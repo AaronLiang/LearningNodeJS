@@ -45,6 +45,18 @@
 		  </div><!-- /.container-fluid -->
 		</nav>
 
+		<% if (locals.success) { %>
+			<div id="alt_success" class="alert alert-success">
+				<%= success %>
+			</div>
+		<% } %>
+		
+		<% if (locals.error) { %>
+			<div id="alt_warning" class="alert alert-warning">
+				<%= error %>
+			</div>
+		<% } %>
 
 		<!-- body -->
 		<div id="container" class="container">
+			

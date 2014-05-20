@@ -60,8 +60,8 @@ User.get = function get(username, callback) {
 				name : username
 			}, function(err, doc) {
 				mongodb.close();
-				if (doc) {
-					// 封装文档为 User 对象
+				if (doc){
+					//封装文档为User对象
 					var user = new User(doc);
 					callback(err, user);
 				} else {
