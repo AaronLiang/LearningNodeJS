@@ -13,6 +13,8 @@ var routes = require('./routes/index');
 var reg = require('./routes/reg');
 var login = require('./routes/login');
 var logout = require('./routes/logout');
+var post = require('./routes/post');
+var user = require('./routes/user');
 
 var app = express();
 
@@ -58,9 +60,11 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', routes);
-app.use('/reg', reg);
-app.use('/login', login);
-app.use('/logout', logout);
+app.use('/', reg);
+app.use('/', login);
+app.use('/', logout);
+app.use('/', post);
+app.use('/', user);
 
 // / catch 404 and forward to error handler
 app.use(function(req, res, next) {

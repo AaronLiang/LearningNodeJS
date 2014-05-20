@@ -6,8 +6,8 @@ var checkStatus = require('./check_status');
 var crypto = require('crypto');
 var User = require('../models/user.js');
 
-router.get('/', checkStatus.checkNotLogin);
-router.get('/', function(req, res) {
+router.get('/reg', checkStatus.checkNotLogin);
+router.get('/reg', function(req, res) {
 	res.render('reg', {
 		title : '用户注册'
 //		user : req.session.user,
@@ -17,8 +17,8 @@ router.get('/', function(req, res) {
 });
 
 /* POST registration page. */
-router.post('/', checkStatus.checkNotLogin);
-router.post('/', function(req, res) {
+router.post('/reg', checkStatus.checkNotLogin);
+router.post('/reg', function(req, res) {
 	// 检测用户两次输入的口令是否一致
 	if (req.body['password-repeat'] != req.body['password']) {
 		req.flash('error', '两次输入的口令不一致');

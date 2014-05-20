@@ -6,15 +6,15 @@ var checkStatus = require('./check_status');
 var crypto = require('crypto');
 var User = require('../models/user.js');
 
-router.get('/', checkStatus.checkNotLogin);
-router.get('/', function (req, res){
+router.get('/login', checkStatus.checkNotLogin);
+router.get('/login', function (req, res){
 	res.render('login', {
 		title: '用户登入'
 	});
 });
 /* POST login page. */
-router.post('/', checkStatus.checkNotLogin);
-router.post('/', function(req, res){
+router.post('/login', checkStatus.checkNotLogin);
+router.post('/login', function(req, res){
 	//生成口令的散列值
 	var md5 = crypto.createHash('md5');
 	var password = md5.update(req.body.password).digest('base64');
