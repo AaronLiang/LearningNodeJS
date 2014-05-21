@@ -5,13 +5,17 @@
 
 ================
 ### To Do
+* Auto Recovery: 故障恢复
+* Blogger: 日志
+* Multi-threads: 多进程
+* Shared Port: 共享端口
 * Authentication: 注册信息进行完整的验证，如用户名的规则，密码的长短等。
 * Captcha：为了防止恶意注册还应该带有验证码和邮件认证的功能，甚至还应该支持OAuth。
 * Length of connet: 我们对发帖没有进行任何限制，尽管注入 HTML 是不可能的，但至少还应该对长度有限制。
 * Pagination: 首页和用户页面的显示都是没有数量限制的，当微博很多以后这个页面可能会很长，应该实现分页的功能。
 * Social tools: 最重要的用户关注、转帖、评论、圈点用户这些功能都没有实现。
 * Cache: 每次查询数据库都没有限制取得的数量，还应该对一些访问频繁的页面增加缓存机制。
-* Depoly
+* Depoly: 部署
 
 ================
 ### License and Author
