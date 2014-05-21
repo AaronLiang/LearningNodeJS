@@ -6,7 +6,7 @@
 ================
 ### To Do
 * Auto Recovery: 故障恢复
-+ Logger: 日志（done basic）
+* *Logger: 日志（done basic）*
 * Multi-threads: 多进程
 * Shared Port: 共享端口
 * Authentication: 注册信息进行完整的验证，如用户名的规则，密码的长短等。
