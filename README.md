@@ -1,10 +1,7 @@
 # Learning Node.js
-  (in Chinese and English)
-  
-================
-### This is a self practice for learning MEAN (Mongodb(v1.4.4) Express(v4.2) AngularJS Node.js(v0.10.25)), also Bootstrap.
-
-#### by tool KeepNote
+* (in Chinese and English)
+* This is a self practice for learning MEAN (Mongodb(v1.4.4) Express(v4.2) AngularJS Node.js(v0.10.25)), also Bootstrap.
+* by tools: KeepNote and Eclipse
 ================
 ### To Do
 * Authentication: 注册信息进行完整的验证，如用户名的规则，密码的长短等。
