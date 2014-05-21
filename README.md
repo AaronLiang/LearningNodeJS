@@ -5,7 +5,7 @@
 ### This is a self practice for learning MEAN (Mongodb(v1.4.4) Express(v4.2) AngularJS Node.js(v0.10.25)), also Bootstrap.
 
   by tool KeepNote
-
+================
 ### To Do
 * Authentication: 注册信息进行完整的验证，如用户名的规则，密码的长短等。
 * Captcha：为了防止恶意注册还应该带有验证码和邮件认证的功能，甚至还应该支持OAuth。
@@ -15,7 +15,7 @@
 * Cache: 每次查询数据库都没有限制取得的数量，还应该对一些访问频繁的页面增加缓存机制。
 * Depoly
 
-
+================
 ### License and Author
 * Author::[RockyNiu](https://github.com/RockyNiu)
   
