@@ -8,7 +8,6 @@ router.get('/', function(req, res) {
 		if (err) {
 			posts = [];
 		}
-
 		res.render('index', {
 			title : '首页',
 			posts : posts,

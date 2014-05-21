@@ -1,3 +1,13 @@
+// logger
+var fs = require('fs');
+var date = (new Date()).toISOString().substring(0,10);
+var accessLogfile = fs.createWriteStream('access_logger_' + date + '.log', {
+	flags : 'a'
+});
+var errorLogfile = fs.createWriteStream('error_logger_' + date + '.log', {
+	flags : 'a'
+});
+
 var express = require('express');
 var path = require('path');
 var favicon = require('static-favicon');
@@ -22,12 +32,14 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(logger({
+	stream : accessLogfile
+}));
 app.use(favicon());
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(bodyParser());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(flash()); // used before session
 app.use(session({
 	secret : settings.cookieSecret,
@@ -40,10 +52,10 @@ app.use(session({
 	})
 }));
 
-//dynamicHelper
+// dynamicHelper
 app.use(function(req, res, next) {
 	res.locals.user = req.session.user;
-	
+
 	var err = req.flash('error');
 	if (err.length)
 		res.locals.error = err;
@@ -55,7 +67,6 @@ app.use(function(req, res, next) {
 		res.locals.success = succ;
 	else
 		res.locals.success = null;
-	console.log('dynamicHelper');
 	next();
 });
 
@@ -90,6 +101,8 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
+	var meta = '[' + new Date() + ']' + req.url + '\n' + err.stack + '\n';
+	errorLogfile.write(meta);
 	res.status(err.status || 500);
 	res.render('error', {
 		message : err.message,

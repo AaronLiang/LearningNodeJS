@@ -1,6 +1,9 @@
 # KeepNote
 *index.sqlite
 
+# log files
+*.log
+
 # Eclipse
 .metadata/
 
